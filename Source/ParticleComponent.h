@@ -26,8 +26,8 @@ public:
     void paint (Graphics&) override;
     void resized() override;
     
-    double getMass() {return _mass;}
-    Vector getPosition() {return _position;}
+    double getMass() const {return _mass;}
+    Vector getPosition() const {return _position;}
     
     void clockUpdate();
     void applyForce(Vector force);

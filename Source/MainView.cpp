@@ -40,12 +40,32 @@ MainView::MainView ()
 
 
     //[Constructor] You can add your own custom stuff here..
-    _particles.push_back(new ParticleComponent({200, 200}, {0, 0}, 10000000000000));
-    _particles.push_back(new ParticleComponent({150, 200}, {0, 10}, 100000));
-    _particles.push_back(new ParticleComponent({130, 200}, {0, 7}, 100000));
-    _particles.push_back(new ParticleComponent({190, 200}, {0, 30}, 100000));
-    _particles.push_back(new ParticleComponent({20, 200}, {0, 4}, 100000));
-    _particles.push_back(new ParticleComponent({500, 200}, {0, -1}, 100000));
+    
+    constexpr int init {0};
+    
+    if (init == 0) {
+        _particles.push_back(new ParticleComponent({200, 200}, {0, 0}, 10000000000000));
+        _particles.push_back(new ParticleComponent({150, 200}, {0, 10}, 100000));
+        _particles.push_back(new ParticleComponent({130, 200}, {0, 7}, 100000));
+        _particles.push_back(new ParticleComponent({190, 200}, {0, 30}, 100000));
+        _particles.push_back(new ParticleComponent({20, 200}, {0, 4}, 100000));
+        _particles.push_back(new ParticleComponent({500, 200}, {0, -1}, 100000));
+    } else if (init == 1) {
+        const double speed {12};
+        const double mass {100000000000000};
+        const double radius {100};
+        const double centre {200};
+        _particles.push_back(new ParticleComponent({centre-radius, centre}, {0, -speed}, mass));
+        _particles.push_back(new ParticleComponent({centre, centre-radius}, {speed, 0}, mass));
+        _particles.push_back(new ParticleComponent({centre+radius, centre}, {0, speed}, mass));
+        _particles.push_back(new ParticleComponent({centre, centre+radius}, {-speed, 0}, mass));
+    } else if (init == 2) {
+        const double mass {100000000000000};
+        const double centre {200};
+        _particles.push_back(new ParticleComponent({centre-100, centre+10}, {10, -16}, mass));
+        _particles.push_back(new ParticleComponent({centre, centre+10}, {-16, 10}, mass));
+        _particles.push_back(new ParticleComponent({centre+100, centre-10}, {-8, -14}, mass));
+    }
     
     
 //    _particles.push_back(new ParticleComponent({200, 200}, {0, 10}, 10000000000000));
